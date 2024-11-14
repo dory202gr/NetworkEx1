@@ -1,7 +1,7 @@
 import sys
 import socket
 
-from consts import DEFAULT_CLIENT_PORT, DEFAULT_CLIENT_HOSTNAME
+from consts import DEFAULT_SERVER_PORT, DEFAULT_SERVER_HOSTNAME
 
 
 def main():
@@ -24,9 +24,9 @@ def cl_parse_args():
 
 
 def default_arg_values():
-    cl_hostname = DEFAULT_CLIENT_HOSTNAME
-    cl_port = DEFAULT_CLIENT_PORT
-    return cl_hostname, cl_port
+    sr_hostname = DEFAULT_SERVER_HOSTNAME
+    sr_port = DEFAULT_SERVER_PORT
+    return sr_hostname, sr_port
 
 
 if __name__ == "__main__":

@@ -1,11 +1,11 @@
 """
 Client Consts
 """
-DEFAULT_CLIENT_HOSTNAME = 'localhost'
-DEFAULT_CLIENT_PORT = 1377
 
 """
 Server Consts
 """
+DEFAULT_SERVER_HOSTNAME = 'localhost'
+DEFAULT_SERVER_PORT = 1377
 
 # TODO: Dory pls complete yours
