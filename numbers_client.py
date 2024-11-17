@@ -5,8 +5,16 @@ from consts import DEFAULT_SERVER_PORT, DEFAULT_SERVER_HOSTNAME
 
 
 def main():
-    cl_hostname, cl_port = cl_parse_args()
+    sr_hostname, sr_port = cl_parse_args()
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    authenticate(server_socket, sr_hostname, sr_port)
     pass
+
+
+def authenticate(server_socket, sr_hostname, sr_port):
+    server_socket.connect((sr_hostname, sr_port))
+    print(server_socket.recv(1024))
+
 
 def cl_parse_args():
     if len(sys.argv) > 3:
