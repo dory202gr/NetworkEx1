@@ -13,7 +13,15 @@ def main():
 
 def authenticate(server_socket, sr_hostname, sr_port):
     server_socket.connect((sr_hostname, sr_port))
+
+    # print "Welcome! Please log in."
     print(server_socket.recv(1024))
+
+    user_name = input("User: ")
+    password = input("Password: ")
+    server_socket.send(f"User: {user_name}\nPassword: {password}".encode())
+    print(server_socket.recv(1024))
+    print()
 
 
 def cl_parse_args():
