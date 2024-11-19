@@ -13,7 +13,7 @@ def calculate_message(operation: str):
     if operation_to_execute == "max":
         result = maximum(operation_elements[1])
         return result
-    if operation_to_execute == "factor":
+    if operation_to_execute == "factors":
         result = factor(operation_elements[1])
         return result
     if operation_to_execute == "quit":
