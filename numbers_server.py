@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 
-from tcp_server import start_connection
+from tcp_server import TCPServer
 from user_map import create_users_map
 from apis import calculate_message
 
@@ -25,7 +25,8 @@ def main():
     port, users_file = arg_parser()
     users_map = create_users_map(users_file)
 
-    start_connection(users_map, port)
+    tcp_server = TCPServer(users_map, port)
+    tcp_server.run_server()
 
 def arg_parser():
     if len(sys.argv) < 2:

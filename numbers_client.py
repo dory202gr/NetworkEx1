@@ -1,27 +1,41 @@
+#!/usr/bin/env python3
 import sys
 import socket
 
-from consts import DEFAULT_SERVER_PORT, DEFAULT_SERVER_HOSTNAME
+from consts import DEFAULT_SERVER_PORT, DEFAULT_SERVER_HOSTNAME, FAILED_TO_LOGIN
 
 
 def main():
     sr_hostname, sr_port = cl_parse_args()
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    authenticate(server_socket, sr_hostname, sr_port)
-    pass
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    authenticate(client_socket, sr_hostname, sr_port)
+    while True:
+        operation = input()
+        client_socket.send(operation.encode())
+        data = client_socket.recv(1024)
+        decoded_data = data.decode()
+        print(decoded_data)
+        if decoded_data == "you've been disconnected from the server":
+            break
+    client_socket.close()
+
+
 
 
 def authenticate(server_socket, sr_hostname, sr_port):
     server_socket.connect((sr_hostname, sr_port))
 
     # print "Welcome! Please log in."
-    print(server_socket.recv(1024))
+    print(server_socket.recv(1024).decode())
 
-    user_name = input("User: ")
-    password = input("Password: ")
-    server_socket.send(f"User: {user_name}\nPassword: {password}".encode())
-    print(server_socket.recv(1024))
-    print()
+    while True:
+        user_name = input("User: ")
+        password = input("Password: ")
+        server_socket.send(f"User: {user_name}\nPassword: {password}".encode())
+        response = server_socket.recv(1024).decode()
+        print(response)
+        if response != FAILED_TO_LOGIN:
+            break
 
 
 def cl_parse_args():

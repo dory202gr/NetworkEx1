@@ -1,7 +1,5 @@
 import re
-
-INT32_MIN = -2147483648
-INT32_MAX = 2147483647
+from  consts import INT32_MIN, INT32_MAX
 
 
 def calculate_message(operation: str):
