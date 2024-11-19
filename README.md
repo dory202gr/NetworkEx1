@@ -39,3 +39,8 @@ This project is a TCP-based client-server application that performs mathematical
 2. Authenticate with a username and password.
 3. After logging in, input mathematical queries or type `quit` to exit.
 
+## Protocol
+
+Simple passing of ascii strings.
+The parsing of the strings to op codes and parameters is done in the server.
+The client only records the input and prints the output
